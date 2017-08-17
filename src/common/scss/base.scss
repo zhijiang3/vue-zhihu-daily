@@ -1,0 +1,183 @@
+body,
+html {
+  font-size: 14px;
+  line-height: 1;
+  font-weight: 400;
+  font-family: 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, Sans-serif !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body,
+ul,
+ol,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+i {
+  font-style: normal;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  border: 0;
+  vertical-align: middle;
+  color: transparent;
+  font-size: 0;
+}
+
+blockquote {
+  border-left: 3px solid #D0E5F2;
+  font-style: normal;
+  display: block;
+  vertical-align: baseline;
+  font-size: 100%;
+  margin: .5em 0;
+  padding: 0 0 0 1em;
+}
+
+h1 {
+  margin: .67em 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 16px;
+}
+
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+
+hr {
+  box-sizing: content-box;
+  height: 0;
+}
+
+mark {
+  background: #ff0;
+  color: #000;
+}
+
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace,serif;
+  font-size: 1em;
+}
+
+pre {
+  white-space: pre-wrap;
+}
+
+q {
+  quotes: \201C\201D\2018\2019;
+}
+
+small {
+  font-size: 80%;
+}
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sup {
+  top: -0.5em;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+svg:not(:root) {
+  overflow: hidden;
+}
+
+figure {
+  margin: 0;
+}
+
+fieldset {
+  border: 1px solid silver;
+  margin: 0 2px;
+  padding: .35em .625em .75em;
+}
+
+legend {
+  border: 0;
+  padding: 0;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  overflow: hidden;
+}
+
+html,
+body,
+#app {
+  width: 100%;
+  height: 100%;
+}
+
+.flex { display: flex; }
+.flex-column { flex-direction: column; }
+.flex-item { flex: 1; }
+.align-center { align-items: center; }
+.content-center { justify-content: center; }
+.flex-wrap {
+  flex-wrap: wrap;
+
+  &.content-center {
+    align-content: center;
+  }
+}
+
+[v-cloak] {
+  display: none;
+}
+
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+
+#app img.none-image {
+  display: none;
+}
+
+.none-image-text {
+  width: 100%;
+  height: 210px;
+  line-height: 210px;
+  display: block;
+  text-align: center;
+  color: #999;
+  background-color: #fff;
+}
+
+.night {
+  img {
+    mask-image: gradient(linear, 0 0, 0 100%, from(rgba(0, 0, 0, 0.7)), to(rgba(0, 0, 0, 0.7)));
+  }
+}
