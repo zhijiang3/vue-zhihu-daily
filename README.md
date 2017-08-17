@@ -33,12 +33,7 @@ npm run dev
 1. 代理服务器后，请求到的图片不显示的问题。解决办法：在 **&lt;head&gt;** 中添加 **&lt;meta name="referrer" content="never"&gt;** 就ok了。  
 meta标签大全参考：[http://blog.csdn.net/kongjiea/article/details/17092413](http://blog.csdn.net/kongjiea/article/details/17092413)
 
-<<<<<<< HEAD
 2. 动画效果很卡。解决办法：利用 **will-change** 或 **transform** 属性的一些3d方法，调起硬件加速，如：**transform: translate3d(0, 0, 0);**、**will-change: transform;**
-=======
-2. 动画效果很卡。解决办法：利用 **will-change** 或 **transform** 属性的一些3d方法，调起硬件加速，如：**
-transform: translate3d(0, 0, 0);**、**will-change: transform;**
->>>>>>> 4a206a330c96146ed48ff7607192a12810ca09a3
 
 3. 因为针对轮播和刷新添加 **touch** 事件，轮播和下拉刷新冲突了，在下拉刷新时，轮播会暂停。这里没解决，建议 **touch** 事件加在 **document** 上，利用 **e.target** 判断是否是需要的节点
 
@@ -73,9 +68,37 @@ transform: translate3d(0, 0, 0);**、**will-change: transform;**
 
 # 部分截图
 
-### 栏目1
+### 切换皮肤
 
-![](图片地址1)
+![切换皮肤](https://github.com/zhijiang3/vue-zhihu-daily/blob/master/static/demo/1.gif)
+
+### 收藏
+
+![收藏](https://github.com/zhijiang3/vue-zhihu-daily/blob/master/static/demo/2.gif)
+
+### 查看评论
+
+![查看评论](https://github.com/zhijiang3/vue-zhihu-daily/blob/master/static/demo/3.gif)
+
+### 双击标题回到顶部
+
+![双击标题回到顶部](https://github.com/zhijiang3/vue-zhihu-daily/blob/master/static/demo/4.gif)
+
+### 主题日报和主题编辑
+
+![主题日报和主题编辑](https://github.com/zhijiang3/vue-zhihu-daily/blob/master/static/demo/5.gif)
+
+### 刷新
+
+![刷新](https://github.com/zhijiang3/vue-zhihu-daily/blob/master/static/demo/6.gif)
+
+### 离线下载
+
+![离线下载](https://github.com/zhijiang3/vue-zhihu-daily/blob/master/static/demo/7.gif)
+
+### 不加载图片内容
+
+![不加载图片内容](https://github.com/zhijiang3/vue-zhihu-daily/blob/master/static/demo/8.gif)
 
 # 项目布局
 
