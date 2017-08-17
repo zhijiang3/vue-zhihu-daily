@@ -40,7 +40,7 @@ npm run dev
 
 3. 因为针对轮播和刷新添加touch事件，轮播和下拉刷新冲突了，在下拉刷新时，轮播会暂停；这里没解决，建议touch事件加在document上，利用e.target判断是否是需要的节点
 
-4. 偶然发现某些网址，如：[https://www.baidu.com](百度)，在下滑时，地址栏会隐藏起来。搜了一下可以通过 window.scrollTo(0, 1) 实现这个效果。此项目未能实现这个效果，因为高度是自适应的没找到解决办法。
+4. 偶然发现某些网址，如：[https://www.baidu.com](百度)，在下滑时，地址栏会隐藏起来。搜了一下可以通过 window.scrollTo(0, 1) 实现这个效果。此项目未能实现这个效果，因为高度是自适应的没找到解决办法。  
 参考地址: [https://github.com/scottjehl/Hide-Address-Bar](https://github.com/scottjehl/Hide-Address-Bar)
 
 # 目标功能
