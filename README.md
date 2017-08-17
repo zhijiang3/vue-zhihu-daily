@@ -30,17 +30,19 @@ npm run dev
 
 # 遇到的问题汇总
 
-1. 代理服务器后，请求到的图片不显示的问题。解决办法：在 &lt;head&gt; 中添加 &lt;meta name="referrer" content="never"&gt;。
+1. 代理服务器后，请求到的图片不显示的问题。解决办法：在 **&lt;head&gt;** 中添加 **&lt;meta name="referrer" content="never"&gt;** 就ok了。  
 meta标签大全参考：[http://blog.csdn.net/kongjiea/article/details/17092413](http://blog.csdn.net/kongjiea/article/details/17092413)
 
-2. 动画效果很卡。解决办法：利用 will-change 或 transform 属性的一些3d方法，调起硬件加速，如：transform: translate3d(0, 0, 0); will-change: transform;
-
-3. 因为针对轮播和刷新添加touch事件，轮播和下拉刷新冲突了，在下拉刷新时，轮播会暂停。这里没解决，建议touch事件加在document上，利用e.target判断是否是需要的节点
-
-4. 偶然发现手机浏览某些网址，如：[百度](https://www.baidu.com)，在下滑时，地址栏会隐藏起来。搜了一下可以通过
+2. 动画效果很卡。解决办法：利用 **will-change** 或 **transform** 属性的一些3d方法，调起硬件加速，如：
 ```
-window.scrollTo(0, 1)
+transform: translate3d(0, 0, 0);
+
+will-change: transform;
 ```
+
+3. 因为针对轮播和刷新添加 **touch** 事件，轮播和下拉刷新冲突了，在下拉刷新时，轮播会暂停。这里没解决，建议 **touch** 事件加在 **document** 上，利用 **e.target** 判断是否是需要的节点
+
+4. 偶然发现手机浏览某些网址，如：[百度](https://www.baidu.com)，在下滑时，地址栏会隐藏起来。搜了一下可以通过 **window.scrollTo(0, 1)** 
 实现这个效果。此项目未能实现这个效果，因为高度是自适应的没找到解决办法。  
 参考地址: [https://github.com/scottjehl/Hide-Address-Bar](https://github.com/scottjehl/Hide-Address-Bar)
 
@@ -54,7 +56,7 @@ window.scrollTo(0, 1)
 - [x] 轮播图效果 —— √ 和下拉刷新有冲突，在下拉刷新时，轮播会暂停
 - [x] 下拉刷新 —— √ 和banner有冲突，在下拉刷新时，轮播会暂停
 - [x] 点击评论里省略的回复可以展开或收回 —— √
-- [x] 收藏文章功能(不用登陆，存储在localStorage) —— √
+- [x] 收藏文章功能 —— √ 不用登陆，存储在localStorage
 - [ ] 分享
 - [ ] 内容点击图片放大
 - [ ] 子栏目过渡动画
