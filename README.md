@@ -33,12 +33,8 @@ npm run dev
 1. 代理服务器后，请求到的图片不显示的问题。解决办法：在 **&lt;head&gt;** 中添加 **&lt;meta name="referrer" content="never"&gt;** 就ok了。  
 meta标签大全参考：[http://blog.csdn.net/kongjiea/article/details/17092413](http://blog.csdn.net/kongjiea/article/details/17092413)
 
-2. 动画效果很卡。解决办法：利用 **will-change** 或 **transform** 属性的一些3d方法，调起硬件加速，如：
-```
-transform: translate3d(0, 0, 0);
-
-will-change: transform;
-```
+2. 动画效果很卡。解决办法：利用 **will-change** 或 **transform** 属性的一些3d方法，调起硬件加速，如：**
+transform: translate3d(0, 0, 0);**、**will-change: transform;**
 
 3. 因为针对轮播和刷新添加 **touch** 事件，轮播和下拉刷新冲突了，在下拉刷新时，轮播会暂停。这里没解决，建议 **touch** 事件加在 **document** 上，利用 **e.target** 判断是否是需要的节点
 
