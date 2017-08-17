@@ -26,7 +26,7 @@
 
     <div class="content-wrapper">
       <!-- 内容头部 -->
-      <div class="top-wrapper" v-show="detail.title">
+      <div class="top-wrapper" :class="{ 'no-image': !detail.image }">
         <h2 class="title" v-text="detail.title"></h2>
         <div class="image">
           <img :src="detail.image">
@@ -128,11 +128,12 @@ export default {
 
         const mainWrap = document.querySelectorAll('.main-wrap')
         this.$mainWrap = mainWrap[mainWrap.length - 1]
-        this.$content = this.$mainWrap.parentNode
-        this.$topWrap = this.$content.querySelector('.top-wrapper')
-        if (!this.detail.title) this.$mainWrap.classList.add('no-title')
-        this.$mainWrap.removeChild(this.$mainWrap.querySelector('.headline'))
-        this.$topWrap.classList.add('top-wrap-show')
+        if (this.$mainWrap) {
+          this.$content = this.$mainWrap.parentNode
+          this.$topWrap = this.$content.querySelector('.top-wrapper')
+          if (!this.detail.image) this.$mainWrap.classList.add('no-image')
+          this.$mainWrap.removeChild(this.$mainWrap.querySelector('.headline'))
+        }
 
         if (this.detail.section) {
           const sectionWrap = document.querySelectorAll('.section-wrap')
@@ -152,11 +153,12 @@ export default {
       let beforeTop = 0
       let percent
       const header = document.querySelectorAll('.detail .header')
+      const height = this.$topWrap && this.$topWrap.offsetHeight || 1
       this.$header = header[header.length - 1]
 
-      this.$content.addEventListener('scroll', (e) => {
+      this.$content && this.$content.addEventListener('scroll', (e) => {
         scrollTop = this.$content.scrollTop
-        if (scrollTop >= 350) {
+        if (scrollTop >= height) {
           if (beforeTop > scrollTop) { // 向上
             this.$header.classList.remove('hide')
             this.$header.style.opacity = 1
@@ -168,10 +170,10 @@ export default {
           /**
            * 顶部导航的淡入淡出
            */
-          percent = Math.max(1 - scrollTop / 224, 0)
+          percent = Math.max(1 - scrollTop / height, 0)
 
           this.$header.style.opacity = percent
-          setTransform(this.$topWrap, `translate3d(0, ${56 * percent}px, 0)`)
+          this.detail.image && setTransform(this.$topWrap, `translate3d(0, ${56 * percent}px, 0)`)
 
           if (percent) {
             this.$header.classList.remove('hide')
@@ -216,14 +218,6 @@ function formatPic (str) {
     z-index: 5;
     top: 0;
     left: 0;
-
-    .no-title {
-      top: 56px !important;
-    }
-
-    .top-wrap-show {
-      display: block !important;
-    }
 
     & > .header {
       padding: 14px 10px;
@@ -275,12 +269,25 @@ function formatPic (str) {
     }
 
     .top-wrapper {
-      position: relative;
-      top: 0;
       transform: translate3d(0, 56px, 0);
       line-height: 1.3;
       border-bottom: 4px solid #f6f6f6;
-      display: none;
+
+      &.no-image {
+        position: static !important;
+
+        .title {
+          position: static;
+          padding: 15px;
+          margin-bottom: 0;
+          color: #000;
+        }
+
+        .image {
+          height: 0;
+          opacity: 0;
+        }
+      }
 
       & > .title {
         position: absolute;
@@ -355,6 +362,11 @@ function formatPic (str) {
         position: absolute;
         top: 280px;
         z-index: 3;
+
+        &.no-image {
+          position: static;
+          margin-top: 56px;
+        }
       }
     }
 
@@ -396,9 +408,13 @@ function formatPic (str) {
       }
 
       .answer {
-
+        
         h1, h2, h3, h4, h5 {
           font-size: 19px;
+        }
+
+        a {
+          color: #003989;
         }
 
         .meta {
@@ -652,6 +668,10 @@ function formatPic (str) {
     .detail{
       .top-wrapper {
         border-bottom: 4px solid #303030;
+
+        .title {
+          color: #fff;
+        }
       }
 
       .content-wrapper {
@@ -676,6 +696,10 @@ function formatPic (str) {
         }
 
         .answer {
+          a {
+            color: #729cd6;
+          }
+
           .meta {
             .author {
               color: #888;

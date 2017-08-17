@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     refreshMethod () {
-      const collection = loadFromLocal('collection')
+      const collection = loadFromLocal('collection') || []
       const arr = collection.map(getDetail)
       this.length = collection.length
       return this.$axios.all(arr).then(this.$axios.spread((...rest) => {

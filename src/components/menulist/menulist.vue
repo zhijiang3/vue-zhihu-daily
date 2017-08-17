@@ -23,6 +23,8 @@
 </template>
 
 <script>
+import { saveToLocal } from 'common/js/store'
+
 export default {
   data () {
     return {
@@ -53,7 +55,8 @@ export default {
       this.menuList.mask = isShow || !this.menuList.mask
     },
     toggleNight () {
-      this.$emit('toggleNight')
+      this.$store.commit('CHANGE_NIGHT')
+      saveToLocal('isNight', this.options.isNight)
       this.closeMenuList()
     }
   }

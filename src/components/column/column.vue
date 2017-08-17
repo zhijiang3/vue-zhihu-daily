@@ -26,9 +26,6 @@ import refresh from '~/refresh/refresh.vue'
 export default {
   data () {
     return {
-      loading: {
-        offline: false
-      },
       events: {
         element: {
           loadData: '',
@@ -47,7 +44,7 @@ export default {
     }
   },
   computed: {
-    ...mapState([ 'options', 'offline', 'sidebar' ])
+    ...mapState([ 'options', 'sidebar' ])
   },
   props: {
     refreshMethod: {
@@ -84,16 +81,6 @@ export default {
       }
 
       slideRight()
-    },
-    offlineLoadData () { // 离线下载
-      if (this.loading.offline) return
-
-      this.$set(this.loading, 'offline', true)
-      this.$store.dispatch('offlineLoadData').then(() => {
-        this.$set(this.loading, 'offline', false)
-      }).catch(() => {
-        this.$set(this.loading, 'offline', false)
-      })
     },
     initEvent () { // 初始化DOM事件
       this.loadData && this.$set(this.events.element, 'loadData', document.getElementById('loadData'))

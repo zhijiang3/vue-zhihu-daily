@@ -23,7 +23,7 @@ export function getDetail (newsId) {
   for (i = 0, len = detail.length; i < len; i++) {
     item = detail[i]
 
-    if (item.id === newsId) {
+    if (+item.id === +newsId) {
       console.log('从本地存储找到一个内容')
       return Promise.resolve({ data: item })
     }
@@ -63,6 +63,18 @@ export function offlineLoadData (latestCb, detailCb) {
 
 export function getSection (sectionId) {
   return axios.get(`/api/4/section/${sectionId}`)
+}
+
+export function getThemes () {
+  return axios.get('/api/4/themes')
+}
+
+export function getTheme (id) {
+  return axios.get(`/api/4/theme/${id}`)
+}
+
+export function loadThemeData (themeId, lastNewsId) {
+  return axios.get(`/api/4/theme/${themeId}/before/${lastNewsId}`)
 }
 
 function loadImages (arr, cb) {

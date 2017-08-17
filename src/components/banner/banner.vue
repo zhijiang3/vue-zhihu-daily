@@ -1,7 +1,7 @@
 <template>
   <div class="banner">
     <div class="banner-wrapper flex">
-      <router-link :to="`news/${item.id}`" class="banner-item" v-for="item in banner" :key="item.id" tag="div"c append>
+      <router-link :to="`/news/${item.id}`" class="banner-item" v-for="item in banner" :key="item.id" tag="div">
         <h2 class="title" v-html="formatTitle(item.title)"></h2>
         <div class="pic-wrapper"><img :src="item.image"></div>
       </router-link>

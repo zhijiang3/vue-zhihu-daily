@@ -3,7 +3,9 @@
 
     <!-- 顶部 -->
     <navigation>
-      <router-link to="/news" class="active-bg"><i class="icon icon-back"></i></router-link>
+      <p class="active-bg" @click.stop.prev="back">
+        <i class="icon icon-back"></i>
+      </p>
       <h2 class="title flex-item">设置</h2>
     </navigation>
     <!-- 顶部结束 -->
@@ -45,6 +47,9 @@ export default {
     }
   },
   methods: {
+    back () {
+      this.$router.go(-1)
+    },
     toggleLoadPic () { // 切换图片加载
       this.$store.commit('CHANGE_LOAD_PIC')
       saveToLocal('loadPic', this.options.loadPic)

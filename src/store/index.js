@@ -33,6 +33,14 @@ const state = {
     percent: 0,
     timer: null,
     animating: false
+  },
+  theme: {
+    name: '主题日报',
+    stories: [],
+    lastNewsId: 0,
+    background: '',
+    description: '',
+    editors: []
   }
 }
 
@@ -87,6 +95,13 @@ const actions = {
   getSection ({ state, commit }) {
     return newsApi.getSection(state.section.sectionId).then(({ data }) => {
       commit('SET_SECTION', data)
+    })
+  },
+  getTheme ({ commit }, themeId) {
+    return newsApi.getTheme(themeId).then(({ data }) => {
+      const stories = data.stories
+      commit('CHANGE_THEME', data)
+      commit('SET_THEME_LASTNEWS_ID', stories[stories.length - 1].id)
     })
   }
 }
@@ -143,6 +158,15 @@ const mutations = {
   },
   CHANGE_SIDEBAR_ANIMATING (state, animating) {
     Vue.set(state.sidebar, 'animating', (animating !== undefined ? animating : !state.sidebar.animating))
+  },
+  CHANGE_THEME (state, data) {
+    Vue.set(state, 'theme', data)
+  },
+  SET_THEME_LASTNEWS_ID (state, id) {
+    Vue.set(state.theme, 'lastNewsId', id)
+  },
+  PUSH_THEME_STORIES (state, stories) {
+    Vue.set(state.theme, 'stories', state.theme.stories.concat(stories))
   }
 }
 

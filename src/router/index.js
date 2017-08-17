@@ -13,6 +13,9 @@ const Section = require('views/section/section.vue')
 const Option = require('views/option/option.vue')
 const Comment = require('views/comment/comment.vue')
 const Collection = require('views/collection/collection.vue')
+const Theme = require('views/theme/theme.vue')
+const Editors = require('views/editors/editors.vue')
+const Editor = require('views/editor/editor.vue')
 
 const detail = {
   path: '/news/:id(\\d+)',
@@ -50,6 +53,20 @@ export default new Router({
       children: [
         detail,
         section
+      ]
+    },
+    {
+      name: 'Theme',
+      path: '/theme/:themeId(\\d+)',
+      component: Theme,
+      children: [
+        {
+          path: 'editors',
+          component: Editors,
+          children: [
+            { path: ':editorId(\\d+)', component: Editor }
+          ]
+        }
       ]
     }
   ]

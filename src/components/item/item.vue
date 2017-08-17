@@ -65,11 +65,15 @@ export default {
     & > .title {
       font-weight: normal;
       min-height: 56px;
+      max-height: 85px;
       line-height: 28px;
       color: #000;
       margin: 0;
       font-size: 1.1rem;
       overflow: hidden;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
     }
 
     & > .date {

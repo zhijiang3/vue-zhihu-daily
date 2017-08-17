@@ -8,7 +8,7 @@
     <template slot="nav">
       <h2 class="title flex-item" v-cloak>{{ events.titleText }}</h2>
       <div class="bell active-bg"><i class="icon icon-bell"></i></div>
-      <menu-list @toggleNight="toggleNight"></menu-list>
+      <menu-list></menu-list>
     </template>
 
     <template slot="content">
@@ -32,7 +32,6 @@ import column from '~/column/column.vue'
 import menuList from '~/menulist/menulist.vue'
 import news from '~/news/news.vue'
 import banner from '~/banner/banner.vue'
-import { saveToLocal } from 'common/js/store'
 
 export default {
   data () {
@@ -56,10 +55,6 @@ export default {
     ...mapState([ 'options', 'banner', 'stories' ])
   },
   methods: {
-    toggleNight () { // 切换皮肤
-      this.$store.commit('CHANGE_NIGHT')
-      saveToLocal('isNight', this.options.isNight)
-    },
     refreshMethod () { // 刷新
       return this.$store.dispatch('refresh').then(() => {
         this.titles = document.querySelectorAll('.index > .content .news-title')

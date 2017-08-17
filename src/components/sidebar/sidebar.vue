@@ -19,11 +19,13 @@
   
         <!-- 快捷方式 -->
         <div class="shortcut flex align-center text-center">
-          <router-link to="/news/star" class="s-item flex-item" tag="div">
-            <i class="icon icon-star"></i> 我的收藏
+          <router-link to="/news/star" class="s-item flex align-center flex-item" tag="div">
+            <i class="icon icon-star"></i>
+            <i class="flex-item">我的收藏</i>
           </router-link>
-          <div class="s-item flex-item" @click.stop="">
-            <i class="icon icon-download"></i> 离线下载
+          <div class="s-item flex align-center flex-item" @click.stop="offlineLoadData">
+            <i class="icon icon-download"></i>
+            <i class="flex-item" v-cloak>{{ getOfflineText() }}</i>
           </div>
         </div>
         <!-- 快捷方式结束 -->
@@ -53,6 +55,7 @@
 
 <script>
 import { mapState } from 'vuex'
+import { getThemes } from 'api/news/news'
 import { saveToLocal, loadFromLocal } from 'common/js/store'
 
 export default {
@@ -61,17 +64,20 @@ export default {
       username: '请登录',
       avatar: 'http://pic1.zhimg.com/da8e974dc_im.jpg',
       themes: [],
-      aniamting: false
+      aniamting: false,
+      loading: {
+        offline: false
+      }
     }
   },
   computed: {
-    ...mapState([ 'sidebar' ])
+    ...mapState([ 'sidebar', 'offline' ])
   },
   methods: {
     getThemes () { // 获取主题
       const themes = loadFromLocal('themes')
       if (!themes) {
-        return this.$axios.get('/api/4/themes').then(({ data }) => {
+        return getThemes().then(({ data }) => {
           const others = data.others
           this.themes = others
           saveToLocal('themes', others)
@@ -101,6 +107,23 @@ export default {
       }
 
       slideLeft()
+    },
+    offlineLoadData () { // 离线下载
+      if (this.loading.offline) return
+
+      this.$set(this.loading, 'offline', true)
+      this.$store.dispatch('offlineLoadData').then(() => {
+        this.$set(this.loading, 'offline', false)
+      }).catch(() => {
+        this.$set(this.loading, 'offline', false)
+      })
+    },
+    getOfflineText () { // 获取离线下载文本
+      const precent = Math.floor(this.offline.current / this.offline.count * 100)
+      if (precent === 100) return '完成'
+      if (!this.loading.offline) return '离线下载'
+
+      return precent + '%'
     }
   },
   mounted () {
@@ -149,8 +172,13 @@ export default {
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
       overflow: auto;
 
-      .icon { margin-right: 10px; }
-      .icon-home { font-size: 22px; margin-right: 15px; vertical-align: -3px; }
+      .icon { margin-left: 10px; }
+      .icon-home {
+        font-size: 22px;
+        margin-left: 0;
+        margin-right: 15px;
+        vertical-align: -3px;
+      }
 
       .top-wrap {
         background-color: #00a2ed;

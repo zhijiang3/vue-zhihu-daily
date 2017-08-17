@@ -62,7 +62,7 @@ export default {
     background-color: inherit;
 
     .content {
-      margin-top: 10px;
+      padding-top: 10px;
       overflow: auto;
     }
   }
