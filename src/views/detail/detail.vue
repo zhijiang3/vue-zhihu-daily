@@ -200,7 +200,7 @@ export default {
 }
 
 function formatPic (str) {
-  return str.replace(/<img class="content-image" src|<img src/g, '<i class="none-image-text">点击下载图片</i><img class="content-image none-image" data-src')
+  return str.replace(/<img class="content-image" src|<img src/g, '<i class="none-image-text">点击加载图片</i><img class="content-image none-image" data-src')
 }
 </script>
 
